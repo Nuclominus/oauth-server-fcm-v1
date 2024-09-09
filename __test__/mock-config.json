@@ -1,0 +1,9 @@
+{
+  "client_credentials": {
+    "client_id": "my-client-id",
+    "client_secret": "my-client-secret"
+  },
+  "fcm_config": {
+    "expected_fcm_project_number": "123456789"
+  }
+}

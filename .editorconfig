@@ -1,0 +1,21 @@
+[*]
+charset = utf-8
+end_of_line = lf
+indent_size = 2
+indent_style = space
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+[{*.json,.node-version,.nvmrc,*.svg}]
+insert_final_newline = false
+
+[{*.md}]
+trim_trailing_whitespace = false # https://stackoverflow.com/editing-help#linebreaks
+
+[/node_modules/**] # Glob/minimatch pattern to match the "node_modules" directory at the project root
+charset = unset
+end_of_line = unset
+indent_size = unset
+indent_style = unset
+insert_final_newline = false
+trim_trailing_whitespace = false

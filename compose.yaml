@@ -1,0 +1,9 @@
+services:
+  fcm_auth_server:
+    build:
+      context: .
+    image: oauth2-server-fcm-v1
+    environment:
+      NODE_ENV: production
+    ports:
+      - 3000:3000

@@ -1,0 +1,6 @@
+{
+  "moduleNameMapper": {
+    "./configs/config.json": "<rootDir>/mock-config.json",
+    "./configs/service-account.json": "<rootDir>/mock-service-account.json"
+  }
+}

@@ -1,0 +1,30 @@
+name: Build Docker Image
+on:
+  push:
+    branches:
+      - main
+jobs:
+  build:
+    name: push docker image to docker hub
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: login to docker hub
+        id: docker-hub
+        env:
+          username: ${{secrets.DOCKERHUB_USERNAME}}
+          password: ${{secrets.DOCKERHUB_PASSWORD}}
+        run: |
+          docker login -u $username -p $password
+      - name: decode configs
+        run: |
+          echo "${{ secrets.CONFIG_JSON_BASE_64 }}" | base64 -d > configs/config.json
+          echo "${{ secrets.SERVICE_ACCOUNT_JSON_BASE64 }}" | base64 -d > configs/service-account.json
+      - name: build the docker image
+        id: build-docker-image
+        run: |
+          ls -la
+          docker build . -f Dockerfile -t ${{secrets.DOCKERHUB_USERNAME}}/fcm-oauth2-v1:latest
+      - name: push the docker image
+        id: push-docker-image
+        run: docker push ${{secrets.DOCKERHUB_USERNAME}}/fcm-oauth2-v1:latest
