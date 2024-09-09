@@ -20,9 +20,9 @@ verifyConfigWereRemoved();
 
 if (!FCM_TOKEN_TTL_SECONDS_OVERRIDE) {
   console.log(
-    "WARNING: you're now using default lifespan of FCM tokens, that is 1 hour. Sinch platform " +
-      "will cache the FCM token provided by this application according to their lifespan; you " +
-      "might want to select a shorter lifespan (e.g. 60s) by editing the " +
+    "WARNING: you're now using default lifespan of FCM tokens, that is 1 hour." +
+      "Client should cache the FCM token provided by this application according" +
+      "to their lifespan; you might want to select a shorter lifespan (e.g. 60s) by editing the " +
       "FCM_TOKEN_TTL_SECONDS_OVERRIDE variable in src/app.js during development, for quicker " +
       "build-test iterations.\n",
   );

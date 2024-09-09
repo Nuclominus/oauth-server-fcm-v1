@@ -12,7 +12,7 @@ const FCM_TOKENS_URL = "/oauth/fcm-token";
 
 // Mock the FCM token factory, to avoid sending real requests to Google.
 jest.mock("../src/fcmTokenFactory", () => () => {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     resolve({
       expiry_date: Date.now() + 10 * 1000,
       access_token: "dummy-fcm-token",
