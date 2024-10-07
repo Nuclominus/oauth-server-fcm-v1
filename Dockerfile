@@ -2,9 +2,10 @@
 
 ARG NODE_VERSION=20
 
+# Use a minimal and secure Node.js base image
 FROM public.ecr.aws/docker/library/node:${NODE_VERSION}-alpine
 
-# Use production node environment by default.
+# Use production node environment by default
 ENV NODE_ENV=production
 
 RUN mkdir -p /home/node/app/node_modules && chown -R node:node /home/node/app
@@ -12,16 +13,22 @@ WORKDIR /home/node/app
 
 COPY package*.json ./
 
-# Run the application as a non-root user.
+# Switch to non-root user
 USER node
 
-RUN npm ci && npm cache clean --force
+# Install dependencies
+RUN npm ci --only=production && npm cache clean --force
 
-# Copy the rest of the source files into the image.
+# Run npm audit fix as root user to avoid permission issues
+USER root
+RUN npm audit fix || true
+
+# Switch back to non-root user and copy the application code
+USER node
 COPY --chown=node:node . .
 
-# Expose the port that the application listens on.
+# Expose the port that the application listens on
 EXPOSE 3000
 
-# Run the application.
+# Run the application
 CMD [ "npm", "start" ]
