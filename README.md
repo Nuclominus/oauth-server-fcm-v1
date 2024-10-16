@@ -65,7 +65,7 @@ ngrok http http://localhost:3000 --domain=<your-static-domain>.ngrok-free.app
 
 Update your OAuth configuration in the `Service` platform with the following values:
 
-| Sinch Dashboard field | Value                                                     |
+| Fields                | Value                                                     |
 | --------------------- |-----------------------------------------------------------|
 | **Client Id**         | `client_id` from `./configs/config.json`                  |
 | **Client Secret**     | `client_secret` from `./configs/config.json`              |
